@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,7 +25,7 @@ public class CustomCaptureAdapter extends BaseAdapter{
 
     public class ViewHolder {
         private ImageView ivCapture;
-        private CheckBox chkBox;
+
         private TextView titleTextView;
         private TextView categoryTextView;
     }
@@ -55,7 +54,7 @@ public class CustomCaptureAdapter extends BaseAdapter{
 
         //Data 세팅
         mViewHolder.ivCapture.setImageBitmap(captureItem.getCapture());
-        mViewHolder.chkBox.setChecked(false);
+
         mViewHolder.titleTextView.setText(captureItem.getCustomTitle());
         mViewHolder.categoryTextView.setText(captureItem.getCategory());
 
