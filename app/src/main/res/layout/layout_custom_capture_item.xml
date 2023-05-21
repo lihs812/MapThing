@@ -20,14 +20,6 @@
             android:layout_height="match_parent"
             android:id="@+id/iv_photo_item"/>
 
-        <CheckBox
-            android:id="@+id/chkStatus"
-            android:layout_marginStart="30dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            />
-
         <TextView
             android:id="@+id/tv_item_title"
             android:layout_width="0dp"
