@@ -11,7 +11,7 @@ public class MainActivity extends AppCompatActivity {
     // Test
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState); 
         setContentView(R.layout.activity_main);
 
         listView = findViewById(R.id.listViewCapture); //listview 선언
