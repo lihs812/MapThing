@@ -1,11 +1,13 @@
 package com.example.mapthing;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
 
 
 public class GETDB extends SQLiteOpenHelper {
@@ -28,31 +30,45 @@ public class GETDB extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    /*
-    추후에 수정하겠습니다. (05-26) //53:56
+
+    //53:56
     //select 쿼리문
     public ArrayList<Arritem> getAlist() {
         ArrayList<Arritem> arritem = new ArrayList<>();
 
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM AList ORDER BY writeDate DESC", null);
-        if(cursor.getCount() != 0)  {
+        if (cursor.getCount() != 0) {
             // 조회한 데이터가 있을 때 내부에서 실행된다
             while (cursor.moveToNext()) {
-                int id = cursor.getInt(cursor.getColumnIndex("id"));
-                String customTitle = cursor.getString(cursor.getColumnIndex("title"));
-                String realPath = cursor.getString(cursor.getColumnIndex("realPath"));
-                String category = cursor.getString(cursor.getColumnIndex("category"));
-                boolean status  = cursor.parseBoolean(cursor.getColumnIndex("status"));
-                String tag = cursor.getString(cursor.getColumnIndex("tag"));
-                String writeDate = cursor.getString(cursor.getColumnIndex("writeDate"));
+                int idColumnIndex = cursor.getColumnIndex("id");
+                int customTitleColumnIndex = cursor.getColumnIndex("customTitle");
+                int realPathColumnIndex = cursor.getColumnIndex("realPath");
+                int categoryColumnIndex = cursor.getColumnIndex("category");
+                int statusColumnIndex = cursor.getColumnIndex("status");
+                int tagColumnIndex = cursor.getColumnIndex("tag");
 
+                if (idColumnIndex != -1 && customTitleColumnIndex != -1 && realPathColumnIndex != -1
+                        && categoryColumnIndex != -1 && statusColumnIndex != -1 && tagColumnIndex != -1) {
+                    int id = cursor.getInt(idColumnIndex);
+                    String customTitle = cursor.getString(customTitleColumnIndex);
+                    String realPath = cursor.getString(realPathColumnIndex);
+                    String category = cursor.getString(categoryColumnIndex);
+                    int statusValue = cursor.getInt(statusColumnIndex);
+                    boolean status = (statusValue == 1); // 1일 때 true, 0일 때 false로 변환
+                    String tag = cursor.getString(tagColumnIndex);
 
-                Arritem arritem
+                    // 나머지 코드...
+                } else {
+                    // 컬럼 인덱스를 찾을 수 없는 경우에 대한 처리
+                }
             }
         }
+
+        return arritem;
     }
-    */
+
+
 
     //insert 쿼리문
     public void InsertDATA(String _customTitle, String _realPath, String _category, boolean _status, String _tag, String _writeDate)    {
