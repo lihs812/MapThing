@@ -1,4 +1,4 @@
-package com.example.mapthing;
+package com.example.test;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -60,12 +60,13 @@ public class DBHelper extends SQLiteOpenHelper {
                     + cursor.getString(0)
                     + "\n name : "
                     + cursor.getString(1)
-                    + "/n 태그 : "
+                    + "\n 태그 : "
                     + cursor.getString(2)
                     + "\n 알람 : "
                     + cursor.getInt(3)
                     + "\n 시간 : "
-                    +cursor.getInt(4);
+                    +cursor.getInt(4)
+                    +"\n";
         }
 
         return result;
