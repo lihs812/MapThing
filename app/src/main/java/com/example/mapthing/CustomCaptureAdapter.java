@@ -12,7 +12,6 @@ import java.util.ArrayList;
 
 public class CustomCaptureAdapter extends BaseAdapter{
 
-
     private static final String TAG = "CustomCustomCaptureClass";
 
     private ArrayList<CustomCaptureClass> captureItems = new ArrayList<>();

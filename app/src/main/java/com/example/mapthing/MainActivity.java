@@ -19,13 +19,13 @@ public class MainActivity extends AppCompatActivity {
         CustomCaptureAdapter customCaptureAdapter = new CustomCaptureAdapter(MainActivity.this); //CustomAdapter
         listView.setAdapter(customCaptureAdapter); //ListView에 Adapter 연결
 
-        customCaptureAdapter.addItem("물건 1","001"); //Item 추가
-        customCaptureAdapter.addItem("물건 2","002");
-        customCaptureAdapter.addItem("물건 3","003");
-        customCaptureAdapter.addItem("물건 4","004");
-        customCaptureAdapter.addItem("물건 5","005");
-        customCaptureAdapter.addItem("물건 6","006");
-        customCaptureAdapter.addItem("물건 7","007");
+        customCaptureAdapter.addItem("거실","001"); //Item 추가
+        customCaptureAdapter.addItem("안방","002");
+        customCaptureAdapter.addItem("침실","003");
+        customCaptureAdapter.addItem("창고","004");
+        customCaptureAdapter.addItem("주방","005");
+
+
 
         customCaptureAdapter.notifyDataSetChanged(); //Adapter 변경시 적용
     }

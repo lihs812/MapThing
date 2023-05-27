@@ -3,7 +3,7 @@ package com.example.mapthing;
 import android.graphics.Bitmap;
 
 public class Arritem {
-    private int id; //고유 ID
+    private int id; //고유 ID (물건을 등록할 때마다 1 증가)
     private String customTitle; //물건 이름
     private String realPath; // 실제 경로
     private String category; // 분류

@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+
+
 public class GETDB extends SQLiteOpenHelper {
 
     private static final int DB_VERSION = 1;
@@ -18,14 +20,12 @@ public class GETDB extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         //db가 생성이 될 때 호출
-
         db.execSQL("Create TABLE IF NOT EXISTS AList (id INTERER PRIMARY KEY AUTOINCREMENT, customTitle TEXT NOT NULL, realPath TEXT NOT NULL,category TEXT, status TEXT, tag TEXT, writeDate TEXT NOT NULL)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         onCreate(db);
-
     }
 
     /*
@@ -43,6 +43,10 @@ public class GETDB extends SQLiteOpenHelper {
                 String customTitle = cursor.getString(cursor.getColumnIndex("title"));
                 String realPath = cursor.getString(cursor.getColumnIndex("realPath"));
                 String category = cursor.getString(cursor.getColumnIndex("category"));
+                boolean status  = cursor.parseBoolean(cursor.getColumnIndex("status"));
+                String tag = cursor.getString(cursor.getColumnIndex("tag"));
+                String writeDate = cursor.getString(cursor.getColumnIndex("writeDate"));
+
 
                 Arritem arritem
             }
@@ -72,7 +76,6 @@ public class GETDB extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("DELETE FROM AList WHERE id = '" + _id + "'");
     }
-
-
-
 }
+
+
