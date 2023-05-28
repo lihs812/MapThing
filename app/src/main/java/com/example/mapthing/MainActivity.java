@@ -38,23 +38,35 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //팝업창
-                Dialog dialog = new Dialog(MainActivity.this, android.R.style.Theme_Material_Light_Dialog);
+
+                Dialog dialog = new Dialog(mContext, android.R.style.Theme_Material_Light_Dialog);
                 dialog.setContentView(R.layout.popup_edit);
                 EditText plain_text1 = dialog.findViewById(R.id.plain_text1);
+                EditText tag_name = dialog.findViewById(R.id.tag_name);
                 Button btn_ok = dialog.findViewById(R.id.btn_ok);
-
 
                 btn_ok.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         String currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 
-                        mGETDB.InsertDATA(plain_text1.getText(),toString(),.getText().toString);
+                        mGETDB.InsertDATA(
+                                plain_text1.getText().toString(),
+                                currentTime,
+                                tag_name.getText().toString(),
+                                false,
+                                "",
+                                ""
+                        );
                     }
                 });
+                dialog.show();
             }
         });
-        */
+
+
+         */
+
     }
 
 }
