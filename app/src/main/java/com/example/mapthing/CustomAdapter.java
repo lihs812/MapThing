@@ -94,19 +94,19 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                                         int itemId = arritem.getId(); // 예시: Arritem 객체에서 _id 값을 가져옴
 
 
-//                                        mGETDB.Update(
-//                                                title,
-//                                                path,
-//                                                tag,
-//                                                writeDate,
-//                                                alarmType,
-//                                                alarmTime
-//                                        );
+                                        mGETDB.Update(
+                                                title,
+                                                "",
+                                                tag,
+                                                beforeTime,
+                                                0,
+                                                "alarmTime"
+                                        );
 
                                         //UI
                                         arritem.setTitle(title);
                                         arritem.setTag(tag);
-                                        //arritem.setWriteDate(currentTime);
+                                        arritem.setWriteDate(currentTime);
 
                                     }
                                 });
@@ -115,7 +115,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                             } else if (position == 1) {
                                 //del table
                                 String beforeTime =  arritem.getWriteDate();
-                                //mGETDB.deleteDATA(beforeTime);
+                                mGETDB.Delete(beforeTime);
 
                                 //del UI
                                 mAlist.remove(curpos);
