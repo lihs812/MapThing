@@ -6,9 +6,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 
 public class DBHelper extends SQLiteOpenHelper {
@@ -48,9 +45,9 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     // Person Table 데이터 삭제
-    public void Delete(String DATE) {
+    public void Delete(String title) {
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("DELETE FROM object WHERE WRITEDATE = '" + DATE + "'");
+        db.execSQL("DELETE FROM object WHERE TITLE = '" + title + "'");
         db.close();
     }
 
