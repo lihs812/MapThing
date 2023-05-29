@@ -1,6 +1,13 @@
 package com.example.mapthing;
 
+import android.app.Dialog;
 import android.database.sqlite.SQLiteDatabase;
+import android.icu.text.SimpleDateFormat;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.content.Context;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,9 +24,10 @@ public class MainActivity extends AppCompatActivity {
     private FloatingActionButton mBtn_write;
     private ArrayList<Arritem> mAlist;
     private GETDB mGETDB;
+    private Context mContext; // mContext 변수 추가
 
 
-    /*
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,9 +76,5 @@ public class MainActivity extends AppCompatActivity {
                 dialog.show();
             }
         });
-
     }
-
-     */
-
 }
