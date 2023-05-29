@@ -3,64 +3,41 @@ package com.example.mapthing;
 import android.graphics.Bitmap;
 
 public class Arritem {
-    private int id; //고유 ID (물건을 등록할 때마다 1 증가)
-    private String customTitle; //물건 이름
-    private String realPath; // 실제 경로
-    private String category; // 분류
-    private Bitmap capture; // 이미지 파일
-    private boolean status; // 상태
-    private String tag; // tag
+
+    private int ID;             //생성시 1 씩 증가
+    private String title;       //물건 이름
+    private String path;        // 상위 경로
+    private String tag;         // 태그
+    private String writeDate;   // 생성일자
+    private int alarmType;      // 알람종류(0 사용안함, 1 날짜기준 까지, 2 일기준 까지, 3 일 마다)
+    private String alarmTime;   // 알람시간
+    private Bitmap capture;     // 이미지 파일
 
     public Arritem() {
 
     }
-
     public int getId() {
-        return id;
+        return ID;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int ID) {
+        this.ID = ID;
     }
 
-    public String getCustomTitle() {
-        return customTitle;
+    public String getTitle() {
+        return title;
     }
 
-    public void setCustomTitle(String customTitle) {
-        this.customTitle = customTitle;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getRealPath() {
-        return realPath;
+    public String getPath() {
+        return path;
     }
 
-    public void setRealPath(String realPath) {
-        this.realPath = realPath;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public Bitmap getCapture() {
-        return capture;
-    }
-
-    public void setCapture(Bitmap capture) {
-        this.capture = capture;
-    }
-
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setPath(String path) {
+        this.path = path;
     }
 
     public String getTag() {
@@ -72,6 +49,35 @@ public class Arritem {
     }
 
     public String getWriteDate() {
-        return getWriteDate();
+        return writeDate;
     }
+
+    public void setWriteDate(String writeDate) {
+        this.writeDate = writeDate;
+    }
+
+    public int getAlarmType() {
+        return alarmType;
+    }
+
+    public void setAlarmType(int alarmType) {
+        this.alarmType = alarmType;
+    }
+
+    public String getAlarmTime() {
+        return alarmTime;
+    }
+
+    public void setAlarmTime(String alarmTime) {
+        this.alarmTime = alarmTime;
+    }
+
+    public Bitmap getCapture() {
+        return capture;
+    }
+
+    public void setCapture(Bitmap capture) {
+        this.capture = capture;
+    }
+
 }

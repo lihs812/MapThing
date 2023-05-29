@@ -24,12 +24,12 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
     private ArrayList<Arritem> mAlist;
     private Context mContext;
-    private GETDB mGETDB;
+    private DBHelper mGETDB;
 
-    public CustomAdapter(ArrayList<Arritem> mAlist, Context mContext, GETDB mGETDB) {
+    public CustomAdapter(ArrayList<Arritem> mAlist, Context mContext, DBHelper mGETDB) {
         this.mAlist = mAlist;
         this.mContext = mContext;
-        mGETDB = new GETDB(mContext);
+        mGETDB = new DBHelper(mContext, 2);
     }
 
     @NonNull
@@ -41,7 +41,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.custom_title.setText(mAlist.get(position).getCustomTitle());
+        holder.custom_title.setText(mAlist.get(position).getTitle());
         holder.write_date.setText(mAlist.get(position).getWriteDate());
     }
 
@@ -94,18 +94,17 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                                         int itemId = arritem.getId(); // 예시: Arritem 객체에서 _id 값을 가져옴
 
 
-                                        mGETDB.UpdateDATA(
-                                                title,
-                                                currentTime,
-                                                tag,
-                                                false,
-                                                "",
-                                                "",
-                                                beforeTime
-                                        );
+//                                        mGETDB.Update(
+//                                                title,
+//                                                path,
+//                                                tag,
+//                                                writeDate,
+//                                                alarmType,
+//                                                alarmTime
+//                                        );
 
                                         //UI
-                                        arritem.setCustomTitle(title);
+                                        arritem.setTitle(title);
                                         arritem.setTag(tag);
                                         //arritem.setWriteDate(currentTime);
 
@@ -116,7 +115,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                             } else if (position == 1) {
                                 //del table
                                 String beforeTime =  arritem.getWriteDate();
-                                mGETDB.deleteDATA(beforeTime);
+                                //mGETDB.deleteDATA(beforeTime);
 
                                 //del UI
                                 mAlist.remove(curpos);
