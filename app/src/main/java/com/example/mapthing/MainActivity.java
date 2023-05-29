@@ -1,6 +1,6 @@
 package com.example.mapthing;
 
-import android.os.Bundle;
+import android.database.sqlite.SQLiteDatabase;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,34 +11,38 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static SQLiteDatabase mDB;
     private RecyclerView mRv_mapthings;
     private FloatingActionButton mBtn_write;
-    private ArrayList<Arritem> mGetAlist;
+    private ArrayList<Arritem> mAlist;
     private GETDB mGETDB;
 
 
+    /*
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         setInit();
     }
 
+
     private void setInit() {
+        // GETDB 인스턴스 생성
         mGETDB = new GETDB(this);
+
+        // RecyclerView 및 FloatingActionButton 요소 초기화
         mRv_mapthings = findViewById(R.id.rv_list);
         mBtn_write = findViewById(R.id.floatingActionButton4);
-        mGetAlist = new ArrayList<>();
+        mAlist = new ArrayList<>();
 
-
-        /*
+        //FloatingActionButton 클릭 리스너
         mBtn_write.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
-                //팝업창
-
+                // 팝업창
                 Dialog dialog = new Dialog(mContext, android.R.style.Theme_Material_Light_Dialog);
                 dialog.setContentView(R.layout.popup_edit);
                 EditText plain_text1 = dialog.findViewById(R.id.plain_text1);
@@ -64,9 +68,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-         */
-
     }
+
+     */
 
 }

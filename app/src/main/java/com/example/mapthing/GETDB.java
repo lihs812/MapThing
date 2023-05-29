@@ -58,6 +58,14 @@ public class GETDB extends SQLiteOpenHelper {
                     boolean status = (statusValue == 1); // 1일 때 true, 0일 때 false로 변환
                     String tag = cursor.getString(tagColumnIndex);
 
+                    Arritem arriteM = new Arritem();
+                    arriteM.setId(id);
+                    arriteM.setCustomTitle(customTitle);
+                    arriteM.setRealPath(realPath);
+                    arriteM.setCategory(category);
+                    arriteM.setStatus(status);
+                    arriteM.setTag(tag);
+
                     // 나머지 코드...
                 } else {
                     // 컬럼 인덱스를 찾을 수 없는 경우에 대한 처리

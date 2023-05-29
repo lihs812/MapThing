@@ -13,12 +13,12 @@ import java.util.ArrayList;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
 
-    private ArrayList<Arritem> mgetAlist;
+    private ArrayList<Arritem> mAlist;
     private Context mContext;
     private GETDB mGETDB;
 
-    public CustomAdapter(ArrayList<Arritem> mgetAlist, Context mContext, GETDB mGETDB) {
-        this.mgetAlist = mgetAlist;
+    public CustomAdapter(ArrayList<Arritem> mAlist, Context mContext, GETDB mGETDB) {
+        this.mAlist = mAlist;
         this.mContext = mContext;
         mGETDB = new GETDB(mContext);
     }
@@ -38,8 +38,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
-        return mgetAlist.size();
+        return mAlist.size();
     }
+
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -52,13 +54,13 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             custom_title = itemView.findViewById(R.id.custom_title);
             write_date = itemView.findViewById(R.id.write_date);
 
-            /*
 
+            /*
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     int curpos = getAdapterPosition();  //현재 리스트 클릭한 아이템 위치
-                    Todoitem todoitem = mgetAlist.get(curpos);
+                    Todoitem todoitem = mAlist.get(curpos);
 
                     String[] strChoiceItems = {"수정하기", "삭제하기"};
                     AlterDialog.Builder builder = new AlterDialog.Builder(mContext);
@@ -85,6 +87,5 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
              */
         }
-
     }
 }
