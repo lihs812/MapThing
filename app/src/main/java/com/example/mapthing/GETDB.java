@@ -66,6 +66,8 @@ public class GETDB extends SQLiteOpenHelper {
                     arriteM.setStatus(status);
                     arriteM.setTag(tag);
 
+                    arritem.add(arriteM);  // 리스트에 데이터 추가
+
                     // 나머지 코드...
                 } else {
                     // 컬럼 인덱스를 찾을 수 없는 경우에 대한 처리

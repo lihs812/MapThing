@@ -5,6 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -54,29 +57,21 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             custom_title = itemView.findViewById(R.id.custom_title);
             write_date = itemView.findViewById(R.id.write_date);
 
-
-            /*
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     int curpos = getAdapterPosition();  //현재 리스트 클릭한 아이템 위치
-                    Todoitem todoitem = mAlist.get(curpos);
+                    Arritem arritem = mAlist.get(curpos);
 
                     String[] strChoiceItems = {"수정하기", "삭제하기"};
-                    AlterDialog.Builder builder = new AlterDialog.Builder(mContext);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
                     builder.setTitle("원하는 작업을 선택해주세요");
-                    builder.setItems(strChoiceItems, new DialogInterface.OnClickListener()
-                    {
+                    builder.setItems(strChoiceItems, new DialogInterface.OnClickListener() {
                         @Override
-                        public void Onclick(DialogInterface dialogInterface, int position)
-                        {
-
-                            if(position == 0)
-                            {
+                        public void onClick(DialogInterface dialogInterface, int position) {
+                            if (position == 0) {
                                 //수정하기
-
-                            }
-                            else if (position == 1) {
+                            } else if (position == 1) {
                                 //삭제하기
                             }
                         }
@@ -84,8 +79,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                     builder.show();
                 }
             });
-
-             */
         }
     }
+
 }
