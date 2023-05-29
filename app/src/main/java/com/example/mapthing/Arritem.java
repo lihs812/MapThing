@@ -70,4 +70,8 @@ public class Arritem {
     public void setTag(String tag) {
         this.tag = tag;
     }
+
+    public String getWriteDate() {
+        return getWriteDate();
+    }
 }

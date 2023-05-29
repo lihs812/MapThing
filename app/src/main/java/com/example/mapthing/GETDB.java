@@ -90,18 +90,19 @@ public class GETDB extends SQLiteOpenHelper {
     }
 
     //update 쿼리문
-    public void UpdateDATA(String _customTitle, String _realPath, String _category, boolean _status, String _tag, String _writeDate, String _id)    {
+    public void UpdateDATA(String _customTitle, String _realPath, String _category, boolean _status, String _tag, String _writeDate, String _beforedate)    {
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("UPDATE AList " +
-                   "SET customtitle='" + _customTitle + "', realPath='" + _realPath + "', category='" + _category + "', status='" + _status + "', tag='" + _tag + "', writeDate='" + _writeDate + "'WHERE id='" + _id + "'");
+                   "SET customtitle='" + _customTitle + "', realPath='" + _realPath + "', category='" + _category + "', status='" + _status + "', tag='" + _tag + "', writeDate='" + _writeDate + "'WHERE writeDate='" + _beforedate + "'");
 
     }
 
     //delete 쿼리문
-    public void deleteDATA(int _id) {
+    public void deleteDATA(String beforeTime) {
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("DELETE FROM AList WHERE id = '" + _id + "'");
+        db.execSQL("DELETE FROM AList WHERE writeDate = '" + beforeTime + "'");
     }
+
 }
 
 
