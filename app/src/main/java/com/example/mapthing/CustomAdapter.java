@@ -29,8 +29,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     public CustomAdapter(ArrayList<Arritem> mAlist, Context mContext, DBHelper mGETDB) {
         this.mAlist = mAlist;
         this.mContext = mContext;
-        mGETDB = new DBHelper(mContext, 2); // DBHelper 초기화
+        this.mGETDB = mGETDB; // mGETDB 초기화
     }
+
 
     @NonNull
     @Override
