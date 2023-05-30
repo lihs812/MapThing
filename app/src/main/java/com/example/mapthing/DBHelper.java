@@ -45,9 +45,9 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     // Person Table 데이터 삭제
-    public void Delete(String title) {
+    public void Delete(String writedate) {
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("DELETE FROM object WHERE TITLE = '" + title + "'");
+        db.execSQL("DELETE FROM object WHERE WRITEDATE = '" + writedate + "'");
         db.close();
     }
 

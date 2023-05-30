@@ -19,8 +19,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
-
-    private static SQLiteDatabase mDB;
     private RecyclerView mRv_mapthings;
     private FloatingActionButton mBtn_write;
     private ArrayList<Arritem> mAlist;

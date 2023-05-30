@@ -29,7 +29,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     public CustomAdapter(ArrayList<Arritem> mAlist, Context mContext, DBHelper mGETDB) {
         this.mAlist = mAlist;
         this.mContext = mContext;
-        mGETDB = new DBHelper(mContext, 2);
+        this.mGETDB = mGETDB;
     }
 
     @NonNull
