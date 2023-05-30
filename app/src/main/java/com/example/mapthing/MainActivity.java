@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setInit() {
-        // GETDB 인스턴스 생성
+        // DBHelper 인스턴스 생성
         dbHelper = new DBHelper(mContext, 2);
 
         // RecyclerView 및 FloatingActionButton 요소 초기화
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
                 btn_ok.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        // insert DB
+                        // DB에 데이터 삽입
                         String currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
                         dbHelper.insert(
                                 plain_text1.getText().toString(),
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                                 ""
                         );
 
-                        // insert UI
+                        // UI에 아이템 삽입
                         Arritem item = new Arritem();
                         item.setTitle(plain_text1.getText().toString());
                         item.setTag(tag_name.getText().toString());

@@ -1,45 +1,41 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.application'  // 안드로이드 애플리케이션 플러그인
 }
 
 android {
-    namespace 'com.example.mapthing'
-    compileSdk 33
+    namespace 'com.example.mapthing'  // 애플리케이션 네임스페이스
+    compileSdk 33  // 컴파일 SDK 버전 설정
 
     defaultConfig {
-        applicationId "com.example.mapthing"
-        minSdk 24
-        targetSdk 33
-        versionCode 1
-        versionName "1.0"
+        applicationId "com.example.mapthing"  // 애플리케이션 ID
+        minSdk 24  // 최소 지원 SDK 버전
+        targetSdk 33  // 타겟 SDK 버전
+        versionCode 1  // 버전 코드
+        versionName "1.0"  // 버전 이름
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"  // 테스트 인스트루먼테이션 러너
     }
 
     buildTypes {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            minifyEnabled false  // 축소화 비활성화
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'  // 프로가드 파일 설정
         }
     }
+
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8  // 소스 호환성 설정
+        targetCompatibility JavaVersion.VERSION_1_8  // 타겟 호환성 설정
     }
 }
 
 dependencies {
+    implementation 'androidx.appcompat:appcompat:1.6.1'  // AndroidX AppCompat 라이브러리 의존성
+    implementation 'com.google.android.material:material:1.5.0'  // Google Material 라이브러리 의존성
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'  // AndroidX ConstraintLayout 라이브러리 의존성
+    implementation 'androidx.room:room-common:2.5.1'  // AndroidX Room Common 라이브러리 의존성
 
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.5.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
-    implementation 'androidx.room:room-common:2.5.1'
-
-
-
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-
-
+    testImplementation 'junit:junit:4.13.2'  // JUnit 테스트 의존성
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'  // AndroidX JUnit 테스트 의존성
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'  // AndroidX Espresso 테스트 의존성
 }

@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="650dp">
 
+    <!-- 외부 ConstraintLayout -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -20,6 +21,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
+        <!-- 물건 이름 -->
         <TextView
             android:id="@+id/object_title"
             android:layout_width="wrap_content"
@@ -34,6 +36,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent" />
 
+        <!-- 이름 입력 필드 -->
         <EditText
             android:id="@+id/plain_text1"
             android:layout_width="wrap_content"
@@ -52,6 +55,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/object_title" />
 
+        <!-- 태그명 입력 필드 -->
         <EditText
             android:id="@+id/tag_name"
             android:layout_width="wrap_content"
@@ -70,6 +74,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tag_title" />
 
+        <!-- 태그명 제목 -->
         <TextView
             android:id="@+id/tag_title"
             android:layout_width="wrap_content"
@@ -85,6 +90,7 @@
             app:layout_constraintTop_toBottomOf="@+id/plain_text1"
             app:layout_constraintVertical_bias="1.0" />
 
+        <!-- 추가하기 버튼 -->
         <Button
             android:id="@+id/btn_ok"
             android:layout_width="0dp"
