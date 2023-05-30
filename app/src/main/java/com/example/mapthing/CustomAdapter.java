@@ -130,7 +130,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         }
     }
 
-    //현재 어댑터에 새로운 게시글 아이템을 전달받아 추가함
+    //현재 어댑터에 새로운 게시글 아이템을 전달받아 추가 함
     public void addItem(Arritem _item)  {
         mAlist.add(0, _item);
         notifyItemInserted(0 ); //새로고침
