@@ -41,8 +41,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.custom_title.setText(mAlist.get(position).getTitle());
-        holder.write_date.setText(mAlist.get(position).getWriteDate());
+        Arritem item = mAlist.get(position);
+        holder.custom_title.setText(item.getTitle());
+        holder.tag_name.setText(item.getTag());
+        holder.write_date.setText(item.getWriteDate());
     }
 
     @Override
@@ -53,12 +55,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView custom_title;
+        private TextView tag_name;
         private TextView write_date;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             custom_title = itemView.findViewById(R.id.custom_title);
+            tag_name = itemView.findViewById(R.id.tag_name);
             write_date = itemView.findViewById(R.id.write_date);
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -133,6 +137,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     //현재 어댑터에 새로운 게시글 아이템을 전달받아 추가 함
     public void addItem(Arritem _item)  {
         mAlist.add(0, _item);
-        notifyItemInserted(0 ); //새로고침
+        notifyItemInserted(0); //새로고침
     }
 }
