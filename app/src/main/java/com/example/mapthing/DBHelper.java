@@ -44,6 +44,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+
     // Person Table 데이터 삭제
     public void Delete(String title) {
         SQLiteDatabase db = getWritableDatabase();

@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
     }
     // 검색을 수행하는 메소드
     /*
-    public void search(String searchText) {
+    private void search(String searchText) {
         // 문자 입력시마다 리스트를 지우고 새로 뿌려준다.
         mAlist.clear();
 
