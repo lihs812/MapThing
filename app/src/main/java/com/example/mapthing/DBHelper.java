@@ -79,29 +79,6 @@ public class DBHelper extends SQLiteOpenHelper {
         return result;
     }
 
-    //Table 내의 모든 항목을 리스트의 형태로 반환
-//    public List<Map<String, String>> getArray(){
-//        List<Map<String, String>> list = new ArrayList<>();
-//
-//        SQLiteDatabase db = getReadableDatabase();
-//        Cursor cursor = db.rawQuery("SELECT * FROM object", null);
-//        try {
-//            while (cursor.moveToNext()) {
-//                Map<String, String> map = new HashMap<>();
-//                map.put("title", cursor.getString(cursor.getColumnIndex("TITLE")));
-//                map.put("path", cursor.getString(cursor.getColumnIndex("PATH")));
-//                map.put("tag", cursor.getString(cursor.getColumnIndex("TAG")));
-//                map.put("writeDate", cursor.getString(cursor.getColumnIndex("WRITEDATE")));
-//                map.put("alarmType", cursor.getString(cursor.getColumnIndex("ALARMTYPE")));
-//                map.put("alarmTime", cursor.getString(cursor.getColumnIndex("ALARMTIME")));
-//                list.add(map);
-//            }
-//        } finally {
-//            cursor.close(); // Cursor를 닫아줌
-//        }
-//
-//        return list;
-//    }
 
 
     public ArrayList<Arritem> getAlist() {
@@ -147,7 +124,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     //검색에 쓰일 코드지만 작동하는지는 확인 못함 (05.30)
-    /*
+
     public ArrayList<Arritem> searchAlist(String searchText) {
         ArrayList<Arritem> arritemList = new ArrayList<>();
 
@@ -193,6 +170,6 @@ public class DBHelper extends SQLiteOpenHelper {
         cursor.close();
         return arritemList;
     }
-    */
+
 
 }

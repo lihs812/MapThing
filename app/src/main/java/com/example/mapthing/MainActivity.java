@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.ListView;
 
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private ListView listView;          // 검색을 보여줄 리스트변수
     private EditText editSearch;        // 검색어를 입력할 Input 창
     private ArrayList<String> arraylist;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,16 +93,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         // 검색 버튼 클릭 리스너 설정
-        /*
+
         ImageView searchButton = findViewById(R.id.serch_button);
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String searchText = mSerch_text_var.getText().toString();
-                search(searchText);
+                //String searchText = mSerch_text_var.getText().toString();
+                //search(searchText);
             }
         });
-         */
+
     }
 
     private void loadRecentDB() {
@@ -113,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     // 검색을 수행하는 메소드
-    /*
+
     private void search(String searchText) {
         // 문자 입력시마다 리스트를 지우고 새로 뿌려준다.
         mAlist.clear();
@@ -132,5 +134,5 @@ public class MainActivity extends AppCompatActivity {
         mAdapter.notifyDataSetChanged();
     }
 
-     */
+
 }
