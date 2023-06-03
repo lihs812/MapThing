@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     private ListView listView;          // 검색을 보여줄 리스트변수
     private EditText editSearch;        // 검색어를 입력할 Input 창
     private ArrayList<String> arraylist;
+    private EditText mSerch_text_var;
+
 
 
     @Override
@@ -98,8 +100,8 @@ public class MainActivity extends AppCompatActivity {
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //String searchText = mSerch_text_var.getText().toString();
-                //search(searchText);
+                String searchText = mSerch_text_var.getText().toString();
+                search(searchText);
             }
         });
 
