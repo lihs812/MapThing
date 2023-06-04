@@ -76,11 +76,8 @@ public class DBHelper extends SQLiteOpenHelper {
                     + cursor.getString(5)
                     + "\n";
         }
-
         return result;
     }
-
-
 
     public ArrayList<Arritem> getAlist() {
         ArrayList<Arritem> arritemList = new ArrayList<>();
@@ -114,54 +111,8 @@ public class DBHelper extends SQLiteOpenHelper {
                     arritem.setAlarmTime(alarmTime);
 
                     arritemList.add(arritem);
-                } else {
-                    // 컬럼 인덱스를 찾을 수 없는 경우에 대한 처리
-                }
-            }
-        }
-
-        cursor.close();
-        return arritemList;
-    }
-
-    //검색에 쓰일 코드지만 작동하는지는 확인 못함 (05.30)
-
-    public ArrayList<Arritem> searchAlist(String searchText) {
-        ArrayList<Arritem> arritemList = new ArrayList<>();
-
-        SQLiteDatabase db = getReadableDatabase();
-        String[] columns = {"TITLE", "PATH", "TAG", "WRITEDATE", "ALARMTYPE", "ALARMTIME"};
-        String selection = "TITLE LIKE ? OR TAG LIKE ?";
-        String[] selectionArgs = {"%" + searchText + "%", "%" + searchText + "%"};
-        Cursor cursor = db.query("object", columns, selection, selectionArgs, null, null, "WRITEDATE DESC");
-
-        if (cursor.getCount() != 0) {
-            while (cursor.moveToNext()) {
-                int titleColumnIndex = cursor.getColumnIndex("TITLE");
-                int pathColumnIndex = cursor.getColumnIndex("PATH");
-                int tagColumnIndex = cursor.getColumnIndex("TAG");
-                int writeDateColumnIndex = cursor.getColumnIndex("WRITEDATE");
-                int alarmTypeColumnIndex = cursor.getColumnIndex("ALARMTYPE");
-                int alarmTimeColumnIndex = cursor.getColumnIndex("ALARMTIME");
-
-                if (titleColumnIndex != -1 && pathColumnIndex != -1 && tagColumnIndex != -1
-                        && writeDateColumnIndex != -1 && alarmTypeColumnIndex != -1 && alarmTimeColumnIndex != -1) {
-                    String title = cursor.getString(titleColumnIndex);
-                    String path = cursor.getString(pathColumnIndex);
-                    String tag = cursor.getString(tagColumnIndex);
-                    String writeDate = cursor.getString(writeDateColumnIndex);
-                    int alarmType = cursor.getInt(alarmTypeColumnIndex);
-                    String alarmTime = cursor.getString(alarmTimeColumnIndex);
-
-                    Arritem arritem = new Arritem();
-                    arritem.setTitle(title);
+                    // 아래 코드를 추가하여 item_path.xml에 경로를 설정합니다.
                     arritem.setPath(path);
-                    arritem.setTag(tag);
-                    arritem.setWriteDate(writeDate);
-                    arritem.setAlarmType(alarmType);
-                    arritem.setAlarmTime(alarmTime);
-
-                    arritemList.add(arritem);
                 } else {
                     // 컬럼 인덱스를 찾을 수 없는 경우에 대한 처리
                 }

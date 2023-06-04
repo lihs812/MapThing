@@ -36,6 +36,18 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         mAlist.addAll(data);
         notifyDataSetChanged();
     }
+    private String formatDateString(String fullDate) {
+        try {
+            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = inputFormat.parse(fullDate);
+            return outputFormat.format(date);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return fullDate; // 에러 발생 시 원래의 전체 날짜를 반환합니다.
+        }
+    }
+
 
     @NonNull
     @Override
@@ -49,7 +61,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         Arritem item = mAlist.get(position);
         holder.custom_title.setText(item.getTitle());
         holder.tag_name.setText(item.getTag());
-        holder.write_date.setText(item.getWriteDate());
+
+        String fullDate = item.getWriteDate();
+        String formattedDate = formatDateString(fullDate);
+        holder.write_date.setText(formattedDate);
+
     }
 
     @Override
@@ -62,6 +78,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         private TextView custom_title;
         private TextView tag_name;
         private TextView write_date;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -90,7 +107,13 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                                 dialog.setContentView(R.layout.popup_edit);
                                 EditText plain_text1 = dialog.findViewById(R.id.plain_text1);
                                 EditText tag_name = dialog.findViewById(R.id.tag_name);
+                                EditText path_name = dialog.findViewById(R.id.path_name);
                                 Button btn_ok = dialog.findViewById(R.id.btn_ok);
+
+                                // 기존 데이터로 기본 값을 설정
+                                plain_text1.setText(arritem.getTitle());
+                                tag_name.setText(arritem.getTag());
+                                path_name.setText(arritem.getPath()); // 이 부분을 추가하여 기본 값을 설정합니다.
 
                                 btn_ok.setOnClickListener(new View.OnClickListener() {
                                     @Override
@@ -99,7 +122,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                                         String currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
                                         mGETDB.Update(
                                                 plain_text1.getText().toString(),
-                                                "",
+                                                path_name.getText().toString(),
                                                 tag_name.getText().toString(),
                                                 currentTime,
                                                 0,
@@ -110,6 +133,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                                         arritem.setTitle(plain_text1.getText().toString());
                                         arritem.setTag(tag_name.getText().toString());
                                         arritem.setWriteDate(currentTime);
+                                        arritem.setPath(path_name.getText().toString()); // 이 부분을 추가하여 경로 값을 업데이트합니다.
                                         notifyDataSetChanged();
 
                                         dialog.dismiss();

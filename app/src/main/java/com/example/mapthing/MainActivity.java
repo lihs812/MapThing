@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 dialog.setContentView(R.layout.popup_edit);
                 EditText plain_text1 = dialog.findViewById(R.id.plain_text1);
                 EditText tag_name = dialog.findViewById(R.id.tag_name);
+                EditText path_name = dialog.findViewById(R.id.path_name);
                 Button btn_ok = dialog.findViewById(R.id.btn_ok);
 
                 btn_ok.setOnClickListener(new View.OnClickListener() {
@@ -69,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                         String currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
                         mGETDB.insert(
                                 plain_text1.getText().toString(),
-                                "",
+                                path_name.getText().toString(),
                                 tag_name.getText().toString(),
                                 currentTime,
                                 0,
@@ -80,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
                         Arritem item = new Arritem();
                         item.setTitle(plain_text1.getText().toString());
                         item.setTag(tag_name.getText().toString());
+                        item.setTag(path_name.getText().toString());
 
                         mAdapter.addItem(item);
 
