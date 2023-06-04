@@ -31,6 +31,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         this.mContext = mContext;
         this.mGETDB = mGETDB;
     }
+    public void updateData(ArrayList<Arritem> data) {
+        mAlist.clear();
+        mAlist.addAll(data);
+        notifyDataSetChanged();
+    }
 
     @NonNull
     @Override

@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mRv_mapthings;
     private FloatingActionButton mBtn_write;
     private ArrayList<Arritem> mAlist;
-    private DBHelper dbHelper;
+    private DBHelper mGETDB;
     private Context mContext; // mContext 변수 추가
     private CustomAdapter mAdapter;
     private List<String> list;          // 데이터를 넣은 리스트변수
@@ -41,13 +41,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void setInit() {
         // DBHelper 인스턴스 생성
-        dbHelper = new DBHelper(mContext, 2);
+        mGETDB = new DBHelper(mContext, 2);
 
         // RecyclerView 및 FloatingActionButton 요소 초기화
         mRv_mapthings = findViewById(R.id.rv_list);
         mBtn_write = findViewById(R.id.floatingActionButton4);
         mAlist = new ArrayList<>();
 
+        // 데이터베이스에서 최신 데이터 가져오기
         loadRecentDB();
 
         // FloatingActionButton 클릭 리스너
@@ -66,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         // DB에 데이터 삽입
                         String currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-                        dbHelper.insert(
+                        mGETDB.insert(
                                 plain_text1.getText().toString(),
                                 "",
                                 tag_name.getText().toString(),
@@ -90,47 +91,17 @@ public class MainActivity extends AppCompatActivity {
                 dialog.show();
             }
         });
-        // 검색 버튼 클릭 리스너 설정
-        /*
-        ImageView searchButton = findViewById(R.id.serch_button);
-        searchButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String searchText = mSerch_text_var.getText().toString();
-                search(searchText);
-            }
-        });
-         */
     }
 
     private void loadRecentDB() {
         // 저장된 DB 가져오기
-        mAlist = dbHelper.getAlist();
+        mAlist = mGETDB.getAlist();
         if (mAdapter == null) {
-            mAdapter = new CustomAdapter(mAlist, this, dbHelper);
+            mAdapter = new CustomAdapter(mAlist, this, mGETDB);
             mRv_mapthings.setHasFixedSize(true);
             mRv_mapthings.setAdapter(mAdapter);
+        } else {
+            mAdapter.updateData(mAlist);
         }
     }
-    // 검색을 수행하는 메소드
-    /*
-    private void search(String searchText) {
-        // 문자 입력시마다 리스트를 지우고 새로 뿌려준다.
-        mAlist.clear();
-
-        // 문자 입력이 없을때는 모든 데이터를 보여준다.
-        if (searchText.length() == 0) {
-            mAlist.addAll(dbHelper.getAlist());
-        }
-        // 문자 입력을 할때..
-        else {
-            // DB에서 검색된 데이터를 가져온다.
-            mAlist.addAll(dbHelper.searchAlist(searchText));
-        }
-
-        // 어댑터에 변경된 데이터를 알린다.
-        mAdapter.notifyDataSetChanged();
-    }
-
-     */
 }

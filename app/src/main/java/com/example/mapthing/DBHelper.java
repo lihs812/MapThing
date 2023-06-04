@@ -19,7 +19,8 @@ public class DBHelper extends SQLiteOpenHelper {
     // Person Table 생성
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE object(ID INTEGER PRIMARY KEY AUTOINCREMENT, TITLE TEXT, PATH TEXT, TAG TEXT, WRITEDATE TEXT, ALARMTYPE INT, ALARMTIME TEXT)");
+        db.execSQL("CREATE TABLE object(ID INTEGER PRIMARY KEY AUTOINCREMENT, TITLE NTEXT, PATH NTEXT, TAG NTEXT, WRITEDATE NTEXT, ALARMTYPE INT, ALARMTIME NTEXT)");
+
     }
 
     // Person Table Upgrade
@@ -33,14 +34,14 @@ public class DBHelper extends SQLiteOpenHelper {
     public void insert(String title, String path, String tag, String writeDate, int alarmType, String alarmTime) {
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("INSERT INTO object (TITLE, PATH, TAG, WRITEDATE, ALARMTYPE, ALARMTIME) "
-                + "VALUES('" + title + "', '" + path + "', '" + tag + "', '" + writeDate + "' , '" + alarmType + "' , '" + alarmTime + "')");
+                + "VALUES(\"" + title + "\", \"" + path + "\", \"" + tag + "\", \"" + writeDate + "\" , " + alarmType + " , \"" + alarmTime + "\")");
         db.close();
     }
 
     // Person Table 데이터 수정
     public void Update(String title, String path, String tag, String writeDate, int alarmType, String alarmTime) {
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("UPDATE object SET PATH = '" + path + "', TAG = '" + tag + "', WRITEDATE = '"+ writeDate + "', ALARMTYPE = " + alarmType + ", ALARMTIME = '" + alarmTime + "' WHERE TITLE = '" + title + "'");
+        db.execSQL("UPDATE object SET PATH = \"" + path + "\", TAG = \"" + tag + "\", WRITEDATE = \""+ writeDate + "\", ALARMTYPE = " + alarmType + ", ALARMTIME = \"" + alarmTime + "\" WHERE TITLE = \"" + title + "\"");
         db.close();
     }
 
@@ -166,10 +167,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 }
             }
         }
-
         cursor.close();
         return arritemList;
     }
-
-
 }
