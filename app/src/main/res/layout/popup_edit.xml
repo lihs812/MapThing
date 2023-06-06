@@ -47,7 +47,7 @@
             android:layout_marginTop="12dp"
             android:layout_marginEnd="127dp"
             android:ems="10"
-            android:hint="name"
+            android:hint="물건의 이름"
             android:inputType="text"
             android:maxLines="1"
             android:minHeight="48dp"
@@ -66,7 +66,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="127dp"
             android:ems="10"
-            android:hint="tag name"
+            android:hint="태그명"
             android:inputType="text"
             android:maxLines="1"
             android:minHeight="48dp"
@@ -121,17 +121,20 @@
             android:id="@+id/path_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="127dp"
             android:ems="10"
+            android:hint="물건의 위치"
             android:inputType="text"
             android:maxLines="1"
-            android:minWidth="100dp"
             android:minHeight="48dp"
             android:singleLine="true"
-            android:text="path"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/path_title" />
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
