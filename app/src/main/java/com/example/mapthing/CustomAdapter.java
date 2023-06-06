@@ -13,12 +13,15 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.widget.Toast;
 
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.Date;
+
+//태그 버튼을 누르면 사용자가 추가한 태그들이 보이고 그 태그를 클릭하면 관련 태그의 물건을 보여주는 걸 구현할 계획
+//팝업 창에서 새로 추가한 제품의 태그명이 경로값으로 변경되고 경로값에는 아무 값도 없으며 작성일자도 표시되지 않는 상황은 못 고쳤음
+
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
 
@@ -46,7 +49,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             return outputFormat.format(date);
         } catch (Exception e) {
             e.printStackTrace();
-            return fullDate; // 에러 발생 시 원래의 전체 날짜를 반환합니다.
+            return fullDate;
         }
     }
 
@@ -110,9 +113,15 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                                 btn_ok.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
+                                        String newTitle = plain_text1.getText().toString();
+                                        if (isDuplicateName(newTitle)) {
+                                            Toast.makeText(mContext, "이미 존재하는 이름입니다. 다른 이름을 입력해주세요.", Toast.LENGTH_SHORT).show();
+                                            return;
+                                        }
+
                                         String currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
                                         mGETDB.Update(
-                                                plain_text1.getText().toString(),
+                                                newTitle,
                                                 path_name.getText().toString(),
                                                 tag_name.getText().toString(),
                                                 currentTime,
@@ -120,7 +129,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                                                 ""
                                         );
 
-                                        arritem.setTitle(plain_text1.getText().toString());
+                                        arritem.setTitle(newTitle);
                                         arritem.setTag(tag_name.getText().toString());
                                         arritem.setWriteDate(currentTime);
                                         arritem.setPath(path_name.getText().toString());
@@ -144,6 +153,15 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                 }
             });
         }
+    }
+
+    private boolean isDuplicateName(String newName) {
+        for (Arritem item : mAlist) {
+            if (item.getTitle().equals(newName)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void addItem(Arritem _item) {
