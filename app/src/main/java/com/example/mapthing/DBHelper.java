@@ -34,14 +34,14 @@ public class DBHelper extends SQLiteOpenHelper {
     public void insert(String title, String path, String tag, String writeDate, int alarmType, String alarmTime) {
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("INSERT INTO object (TITLE, PATH, TAG, WRITEDATE, ALARMTYPE, ALARMTIME) "
-                + "VALUES(\"" + title + "\", \"" + path + "\", \"" + tag + "\", \"" + writeDate + "\" , " + alarmType + " , \"" + alarmTime + "\")");
+                + "VALUES('" + title + "','" + path + "','" + tag + "','" + writeDate + "'," + alarmType + ",'" + alarmTime + "')");
         db.close();
     }
 
     // Person Table 데이터 수정
     public void Update(String title, String path, String tag, String writeDate, int alarmType, String alarmTime) {
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("UPDATE object SET PATH = \"" + path + "\", TAG = \"" + tag + "\", WRITEDATE = \""+ writeDate + "\", ALARMTYPE = " + alarmType + ", ALARMTIME = \"" + alarmTime + "\" WHERE TITLE = \"" + title + "\"");
+        db.execSQL("UPDATE object SET PATH = '" + path + "', TAG = '" + tag + "', WRITEDATE = '"+ writeDate + "', ALARMTYPE = " + alarmType + ", ALARMTIME = '" + alarmTime + "' WHERE TITLE = '" + title + "'");
         db.close();
     }
 

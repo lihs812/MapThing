@@ -29,52 +29,39 @@
             android:id="@+id/object_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="311dp"
-            android:layout_marginBottom="532dp"
             android:text="물건 이름"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintBottom_toTopOf="@+id/plain_text1"
+            app:layout_constraintStart_toStartOf="@+id/plain_text1" />
 
         <EditText
             android:id="@+id/plain_text1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="127dp"
+            android:layout_marginBottom="50dp"
             android:ems="10"
-            android:hint="물건의 이름"
+            android:hint="ex) 빨간 티셔츠"
             android:inputType="text"
             android:maxLines="1"
             android:minHeight="48dp"
             android:singleLine="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/object_title" />
+            app:layout_constraintBottom_toTopOf="@+id/tag_name"
+            app:layout_constraintStart_toStartOf="@+id/tag_name" />
 
         <!-- 태그명 입력 필드 -->
         <EditText
             android:id="@+id/tag_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="127dp"
+            android:layout_marginBottom="50dp"
             android:ems="10"
-            android:hint="태그명"
+            android:hint="ex) 셔츠, 옷, 빨간색"
             android:inputType="text"
             android:maxLines="1"
             android:minHeight="48dp"
             android:singleLine="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tag_title" />
+            app:layout_constraintBottom_toTopOf="@+id/path_name"
+            app:layout_constraintStart_toStartOf="@+id/path_name" />
 
         <!-- 태그명 제목 -->
 
@@ -83,24 +70,18 @@
             android:id="@+id/tag_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="311dp"
-            android:layout_marginBottom="264dp"
             android:text="태그명"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/plain_text1"
-            app:layout_constraintTop_toBottomOf="@+id/plain_text1"
-            app:layout_constraintVertical_bias="0.179" />
+            app:layout_constraintBottom_toTopOf="@+id/tag_name"
+            app:layout_constraintStart_toStartOf="@+id/tag_name" />
 
         <Button
             android:id="@+id/btn_ok"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="99dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="25dp"
             android:text="저장하기"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -110,30 +91,25 @@
             android:id="@+id/path_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="27dp"
-            android:layout_marginEnd="249dp"
-            android:text="물건의 경로"
+            android:text="물건을 넣을 곳"
             android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tag_name" />
+            app:layout_constraintBottom_toTopOf="@+id/path_name"
+            app:layout_constraintStart_toStartOf="@+id/path_name" />
 
         <EditText
             android:id="@+id/path_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="127dp"
+            android:layout_marginBottom="50dp"
             android:ems="10"
-            android:hint="물건의 위치"
+            android:hint="ex) 장롱"
             android:inputType="text"
             android:maxLines="1"
             android:minHeight="48dp"
             android:singleLine="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/path_title" />
+            app:layout_constraintBottom_toTopOf="@+id/btn_ok"
+            app:layout_constraintStart_toStartOf="parent" />
 
 
 

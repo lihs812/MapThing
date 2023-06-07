@@ -2,6 +2,7 @@ package com.example.mapthing;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.view.View;
@@ -63,6 +64,10 @@ public class MainActivity extends AppCompatActivity {
                 EditText path_name = dialog.findViewById(R.id.path_name);
                 Button btn_ok = dialog.findViewById(R.id.btn_ok);
 
+//                void list_db_set(){
+//
+//                }ㅅ
+
                 btn_ok.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -81,16 +86,26 @@ public class MainActivity extends AppCompatActivity {
                         Arritem item = new Arritem();
                         item.setTitle(plain_text1.getText().toString());
                         item.setTag(tag_name.getText().toString());
-                        item.setTag(path_name.getText().toString());
+                        //item.setTag(path_name.getText().toString());
 
                         mAdapter.addItem(item);
 
                         mRv_mapthings.smoothScrollToPosition(0);
                         dialog.dismiss();
-                        Toast.makeText(MainActivity.this, "할일 목록에 추가되었습니다.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "물건이 목록에 추가되었습니다.", Toast.LENGTH_SHORT).show();
                     }
                 });
                 dialog.show();
+            }
+        });
+
+        //tag 화면전환
+        Button tag_button = findViewById(R.id.tag_button);
+        tag_button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent(getApplicationContext(), tagActivity.class);
+                startActivity(intent);
             }
         });
     }
