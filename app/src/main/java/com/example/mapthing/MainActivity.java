@@ -25,11 +25,11 @@ public class MainActivity extends AppCompatActivity {
     private FloatingActionButton mBtn_write;
     private ArrayList<Arritem> mAlist;
     private DBHelper mGETDB;
-    private Context mContext; // mContext 변수 추가
+    private Context mContext;
     private CustomAdapter mAdapter;
-    private List<String> list;          // 데이터를 넣은 리스트변수
-    private ListView listView;          // 검색을 보여줄 리스트변수
-    private EditText editSearch;        // 검색어를 입력할 Input 창
+    private List<String> list;
+    private ListView listView;
+    private EditText editSearch;
     private ArrayList<String> arraylist;
 
     @Override
@@ -41,22 +41,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setInit() {
-        // DBHelper 인스턴스 생성
         mGETDB = new DBHelper(mContext, 2);
-
-        // RecyclerView 및 FloatingActionButton 요소 초기화
         mRv_mapthings = findViewById(R.id.rv_list);
         mBtn_write = findViewById(R.id.floatingActionButton4);
         mAlist = new ArrayList<>();
 
-        // 데이터베이스에서 최신 데이터 가져오기
         loadRecentDB();
 
-        // FloatingActionButton 클릭 리스너
         mBtn_write.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 팝업창
                 Dialog dialog = new Dialog(mContext, android.R.style.Theme_Material_Light_Dialog);
                 dialog.setContentView(R.layout.popup_edit);
                 EditText plain_text1 = dialog.findViewById(R.id.plain_text1);
@@ -64,17 +58,19 @@ public class MainActivity extends AppCompatActivity {
                 EditText path_name = dialog.findViewById(R.id.path_name);
                 Button btn_ok = dialog.findViewById(R.id.btn_ok);
 
-//                void list_db_set(){
-//
-//                }ㅅ
-
                 btn_ok.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        // DB에 데이터 삽입
+                        String itemName = plain_text1.getText().toString();
+
+                        if (isItemNameDuplicate(itemName)) {
+                            Toast.makeText(MainActivity.this, "이미 존재하는 물건 이름입니다.", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
                         String currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
                         mGETDB.insert(
-                                plain_text1.getText().toString(),
+                                itemName,
                                 path_name.getText().toString(),
                                 tag_name.getText().toString(),
                                 currentTime,
@@ -82,11 +78,9 @@ public class MainActivity extends AppCompatActivity {
                                 ""
                         );
 
-                        // UI에 아이템 삽입
                         Arritem item = new Arritem();
-                        item.setTitle(plain_text1.getText().toString());
+                        item.setTitle(itemName);
                         item.setTag(tag_name.getText().toString());
-                        //item.setTag(path_name.getText().toString());
 
                         mAdapter.addItem(item);
 
@@ -99,11 +93,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //tag 화면전환
         Button tag_button = findViewById(R.id.tag_button);
-        tag_button.setOnClickListener(new View.OnClickListener(){
+        tag_button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
+            public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), tagActivity.class);
                 startActivity(intent);
             }
@@ -111,7 +104,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadRecentDB() {
-        // 저장된 DB 가져오기
         mAlist = mGETDB.getAlist();
         if (mAdapter == null) {
             mAdapter = new CustomAdapter(mAlist, this, mGETDB);
@@ -120,5 +112,16 @@ public class MainActivity extends AppCompatActivity {
         } else {
             mAdapter.updateData(mAlist);
         }
+    }
+
+    // 물건 이름 중복 체크 메서드
+    private boolean isItemNameDuplicate(String itemName) {
+        ArrayList<Arritem> itemList = mGETDB.getAlist();
+        for (Arritem item : itemList) {
+            if (item.getTitle().equals(itemName)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
