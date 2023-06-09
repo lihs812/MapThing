@@ -65,11 +65,6 @@ public class MainActivity extends AppCompatActivity {
                         String itemName = plain_text1.getText().toString();
                         String path = path_name.getText().toString();
 
-                        if (path.isEmpty()) {  // 경로를 입력하지 않은 경우
-                            Toast.makeText(MainActivity.this, "경로를 입력해주세요.", Toast.LENGTH_SHORT).show();
-                            return;
-                        }
-
                         if (isDuplicateObjectName(itemName)) {
                             Toast.makeText(MainActivity.this, "이미 존재하는 객체 이름입니다.", Toast.LENGTH_SHORT).show();
                             return;
@@ -97,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
                         System.out.println(mGETDB.getPath(itemName).toString());
                     }
                 });
+
                 dialog.show();
             }
         });
