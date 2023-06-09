@@ -1,4 +1,5 @@
 package com.example.mapthing;
+
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+
 public class path_view_list extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
@@ -22,7 +24,8 @@ public class path_view_list extends AppCompatActivity {
 
         // 경로 데이터 가져오기
         DBHelper dbHelper = new DBHelper(this, 2); // 버전 번호를 2로 변경
-        pathList = dbHelper.getPath("물건의_이름");
+        String itemName = "물건의_이름";
+        pathList = dbHelper.getPath(itemName);
 
         // 어댑터 설정
         adapter = new PathAdapter(pathList);
