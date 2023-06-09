@@ -82,30 +82,43 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                     @Override
                     public void onClick(View v) {
                         String newTitle = plain_text1.getText().toString();
-                        if (isDuplicateName(newTitle)) {
-                            Toast.makeText(mContext, "이미 존재하는 이름입니다. 다른 이름을 입력해주세요.", Toast.LENGTH_SHORT).show();
+                        String newPath = path_name.getText().toString();
+
+                        // 경로가 비어있는지 확인
+                        if (newPath.isEmpty()) {
+                            Toast.makeText(mContext, "경로를 입력해주세요.", Toast.LENGTH_SHORT).show();
                             return;
                         }
 
-                        String currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+                        // 이미 동일한 이름의 객체가 있는지 확인
+                        if (isDuplicateObjectName(newTitle)) {
+                            Toast.makeText(mContext, "동일한 이름의 객체가 이미 존재합니다.", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
 
-                        mGETDB.Update(
+                        // 객체 생성 로직 추가
+                        String currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+                        mGETDB.insert(
                                 newTitle,
-                                path_name.getText().toString(),
+                                newPath,
                                 tag_name.getText().toString(),
                                 currentTime,
                                 0,
                                 ""
                         );
 
-                        item.setTitle(newTitle);
-                        item.setTag(tag_name.getText().toString());
-                        item.setWriteDate(currentTime);
-                        item.setPath(path_name.getText().toString());
-                        notifyDataSetChanged();
+                        Arritem newItem = new Arritem();
+                        newItem.setTitle(newTitle);
+                        newItem.setTag(tag_name.getText().toString());
+
+                        addItem(newItem);
 
                         dialog.dismiss();
-                        Toast.makeText(mContext, "물건 정보가 수정되었습니다.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, "물건이 목록에 추가되었습니다.", Toast.LENGTH_SHORT).show();
+                        System.out.println(mGETDB.getPath(newTitle).toString());
+
+                        // 기존 코드를 이어서 수행하도록 작성
+                        // ...
                     }
                 });
 
@@ -155,8 +168,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         }
     }
 
-    private boolean isDuplicateName(String newName) {
-        for (Arritem item : mAlist) {
+    private boolean isDuplicateObjectName(String newName) {
+        ArrayList<Arritem> itemList = mGETDB.getAlist();
+        for (Arritem item : itemList) {
             if (item.getTitle().equals(newName)) {
                 return true;
             }
