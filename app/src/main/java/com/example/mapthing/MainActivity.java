@@ -63,16 +63,22 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         String itemName = plain_text1.getText().toString();
+                        String path = path_name.getText().toString();
 
-                        if (isItemNameDuplicate(itemName)) {
-                            Toast.makeText(MainActivity.this, "이미 존재하는 물건 이름입니다.", Toast.LENGTH_SHORT).show();
+                        if (path.isEmpty()) {  // 경로를 입력하지 않은 경우
+                            Toast.makeText(MainActivity.this, "경로를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        if (isDuplicateObjectName(itemName)) {
+                            Toast.makeText(MainActivity.this, "이미 존재하는 객체 이름입니다.", Toast.LENGTH_SHORT).show();
                             return;
                         }
 
                         String currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
                         mGETDB.insert(
                                 itemName,
-                                path_name.getText().toString(),
+                                path,
                                 tag_name.getText().toString(),
                                 currentTime,
                                 0,
@@ -116,11 +122,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // 물건 이름 중복 체크 메서드
-    private boolean isItemNameDuplicate(String itemName) {
+    private boolean isDuplicateObjectName(String objectName) {
         ArrayList<Arritem> itemList = mGETDB.getAlist();
         for (Arritem item : itemList) {
-            if (item.getTitle().equals(itemName)) {
+            if (item.getTitle().equals(objectName)) {
                 return true;
             }
         }

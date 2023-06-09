@@ -96,7 +96,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                             return;
                         }
 
-                        // 객체 생성 로직 추가
                         String currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
                         mGETDB.insert(
                                 newTitle,
@@ -116,9 +115,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                         dialog.dismiss();
                         Toast.makeText(mContext, "물건이 목록에 추가되었습니다.", Toast.LENGTH_SHORT).show();
                         System.out.println(mGETDB.getPath(newTitle).toString());
-
-                        // 기존 코드를 이어서 수행하도록 작성
-                        // ...
                     }
                 });
 
@@ -130,16 +126,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                         if (adapterPosition != RecyclerView.NO_POSITION) {
                             mAlist.remove(adapterPosition);
                             notifyItemRemoved(adapterPosition);
+                            notifyItemRangeChanged(adapterPosition, mAlist.size());
                         }
                         dialog.dismiss();
-                        Toast.makeText(mContext, "물건 정보가 삭제되었습니다.", Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-                dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                    @Override
-                    public void onDismiss(DialogInterface dialog) {
-                        notifyDataSetChanged();
+                        Toast.makeText(mContext, "물건이 삭제되었습니다.", Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -153,33 +143,31 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         return mAlist.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-
-        private TextView custom_title;
-        private TextView tag_name;
-        private TextView write_date;
-
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-
-            custom_title = itemView.findViewById(R.id.custom_title);
-            tag_name = itemView.findViewById(R.id.tag_name);
-            write_date = itemView.findViewById(R.id.write_date);
-        }
-    }
-
-    private boolean isDuplicateObjectName(String newName) {
-        ArrayList<Arritem> itemList = mGETDB.getAlist();
-        for (Arritem item : itemList) {
-            if (item.getTitle().equals(newName)) {
+    private boolean isDuplicateObjectName(String objectName) {
+        for (Arritem item : mAlist) {
+            if (item.getTitle().equals(objectName)) {
                 return true;
             }
         }
         return false;
     }
 
-    public void addItem(Arritem _item) {
-        mAlist.add(0, _item);
+    public void addItem(Arritem item) {
+        mAlist.add(0, item);
         notifyItemInserted(0);
+        notifyItemRangeChanged(0, mAlist.size());
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        private TextView custom_title;
+        private TextView tag_name;
+        private TextView write_date;
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            custom_title = itemView.findViewById(R.id.custom_title);
+            tag_name = itemView.findViewById(R.id.tag_name);
+            write_date = itemView.findViewById(R.id.write_date);
+        }
     }
 }
