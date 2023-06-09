@@ -21,6 +21,7 @@ import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
     private RecyclerView mRv_mapthings;
     private FloatingActionButton mBtn_write;
     private ArrayList<Arritem> mAlist;
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 EditText plain_text1 = dialog.findViewById(R.id.plain_text1);
                 EditText tag_name = dialog.findViewById(R.id.tag_name);
                 EditText path_name = dialog.findViewById(R.id.path_name);
-                Button btn_ok = dialog.findViewById(R.id.btn_ok);
+                Button btn_ok = dialog.findViewById(R.id.btn_update);
 
                 btn_ok.setOnClickListener(new View.OnClickListener() {
                     @Override
