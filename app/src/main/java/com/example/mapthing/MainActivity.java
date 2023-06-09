@@ -65,15 +65,12 @@ public class MainActivity extends AppCompatActivity {
                         String itemName = plain_text1.getText().toString();
                         String path = path_name.getText().toString();
 
-                        // 경로를 입력하지 않은 경우 처리
-                        if (path.isEmpty()) {
-                            Toast.makeText(MainActivity.this, "경로를 입력해주세요.", Toast.LENGTH_SHORT).show();
-                            return;
-                        }
+                        // 이미 동일한 이름의 객체가 있는지 확인
+                        boolean isDuplicate = isDuplicateObjectName(itemName);
 
-                        if (isDuplicateObjectName(itemName)) {
-                            Toast.makeText(MainActivity.this, "이미 존재하는 객체 이름입니다.", Toast.LENGTH_SHORT).show();
-                            return;
+                        // 경로를 입력하지 않은 경우, 빈 문자열로 설정
+                        if (path.isEmpty()) {
+                            path = "";
                         }
 
                         String currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
@@ -96,8 +93,14 @@ public class MainActivity extends AppCompatActivity {
                         dialog.dismiss();
                         Toast.makeText(MainActivity.this, "물건이 목록에 추가되었습니다.", Toast.LENGTH_SHORT).show();
                         System.out.println(mGETDB.getPath(itemName).toString());
+
+                        // 이미 동일한 이름의 객체가 있는 경우 메시지 출력
+                        if (isDuplicate) {
+                            Toast.makeText(MainActivity.this, "동일한 이름의 객체가 이미 존재합니다.", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
+
 
                 dialog.show();
             }

@@ -84,15 +84,16 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                         String newTitle = plain_text1.getText().toString();
                         String newPath = path_name.getText().toString();
 
+                        // 이미 동일한 이름의 객체가 있는지 확인
+                        boolean isDuplicate = isDuplicateObjectName(newTitle);
+                        if (isDuplicate) {
+                            // 이미 동일한 이름의 객체가 존재하는 경우, 해당 객체를 삭제
+                            mGETDB.Delete(newTitle);
+                        }
+
                         // 경로를 입력하지 않은 경우 처리
                         if (newPath.isEmpty()) {
                             Toast.makeText(mContext, "경로를 입력해주세요.", Toast.LENGTH_SHORT).show();
-                            return;
-                        }
-
-                        // 이미 동일한 이름의 객체가 있는지 확인
-                        if (isDuplicateObjectName(newTitle)) {
-                            Toast.makeText(mContext, "동일한 이름의 객체가 이미 존재합니다.", Toast.LENGTH_SHORT).show();
                             return;
                         }
 
@@ -117,7 +118,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                         System.out.println(mGETDB.getPath(newTitle).toString());
                     }
                 });
-
 
                 btn_delete.setOnClickListener(new View.OnClickListener() {
                     @Override
