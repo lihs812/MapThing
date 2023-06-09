@@ -65,6 +65,12 @@ public class MainActivity extends AppCompatActivity {
                         String itemName = plain_text1.getText().toString();
                         String path = path_name.getText().toString();
 
+                        // 경로를 입력하지 않은 경우 처리
+                        if (path.isEmpty()) {
+                            Toast.makeText(MainActivity.this, "경로를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
                         if (isDuplicateObjectName(itemName)) {
                             Toast.makeText(MainActivity.this, "이미 존재하는 객체 이름입니다.", Toast.LENGTH_SHORT).show();
                             return;
