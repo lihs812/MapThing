@@ -87,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
                         mRv_mapthings.smoothScrollToPosition(0);
                         dialog.dismiss();
                         Toast.makeText(MainActivity.this, "물건이 목록에 추가되었습니다.", Toast.LENGTH_SHORT).show();
+                        System.out.println(mGETDB.getPath(itemName).toString());
                     }
                 });
                 dialog.show();

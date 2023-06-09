@@ -4,8 +4,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class DBHelper extends SQLiteOpenHelper {
@@ -76,7 +78,25 @@ public class DBHelper extends SQLiteOpenHelper {
                     + cursor.getString(5)
                     + "\n";
         }
+        cursor.close();
         return result;
+    }
+    //한 객체의 모든 경로를 보여주는 함수
+    //안에 타이틀의 이름을 넣으면 연결된 모든 경로를 보여줌
+    public List<String> getPath(String title){
+        SQLiteDatabase db = getReadableDatabase();
+        List<String> list = new ArrayList<>();
+        list.add(title);
+        String t = null;
+        Cursor cursor = db.rawQuery("SELECT * FROM object WHERE TITLE = '" + title + "'", null);
+        if (cursor.moveToFirst()) {
+             t = cursor.getString(2);
+        }
+        cursor.close();
+        if (t != null) {
+            list.addAll(getPath(t));
+        }
+        return list;
     }
 
     public ArrayList<Arritem> getAlist() {
