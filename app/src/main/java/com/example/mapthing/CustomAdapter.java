@@ -86,36 +86,37 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
                         // 이미 동일한 이름의 객체가 있는지 확인
                         boolean isDuplicate = isDuplicateObjectName(newTitle);
-                        if (isDuplicate) {
-                            // 이미 동일한 이름의 객체가 존재하는 경우, 해당 객체를 삭제
-                            mGETDB.Delete(newTitle);
-                        }
 
-                        // 경로를 입력하지 않은 경우 처리
+                        // 경로를 입력하지 않은 경우, 빈 문자열로 설정
                         if (newPath.isEmpty()) {
-                            Toast.makeText(mContext, "경로를 입력해주세요.", Toast.LENGTH_SHORT).show();
-                            return;
+                            newPath = "";
                         }
+                        if ((isDuplicateObjectName(newPath) || newPath.isEmpty())) {
+                            String currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+                            mGETDB.Update(
+                                    newTitle,
+                                    newPath,
+                                    tag_name.getText().toString(),
+                                    currentTime,
+                                    0,
+                                    ""
+                            );
 
-                        String currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-                        mGETDB.insert(
-                                newTitle,
-                                newPath,
-                                tag_name.getText().toString(),
-                                currentTime,
-                                0,
-                                ""
-                        );
+                            Arritem newItem = new Arritem();
+                            newItem.setTitle(newTitle);
+                            newItem.setTag(tag_name.getText().toString());
 
-                        Arritem newItem = new Arritem();
-                        newItem.setTitle(newTitle);
-                        newItem.setTag(tag_name.getText().toString());
+                            addItem(newItem);
 
-                        addItem(newItem);
+                            dialog.dismiss();
+                            Toast.makeText(mContext, "물건이 수정 되었습니다.", Toast.LENGTH_SHORT).show();
+                            System.out.println(mGETDB.getPath(newTitle).toString());
+                        }
+                        // 이미 동일한 이름의 객체가 있는 경우 메시지 출력
 
-                        dialog.dismiss();
-                        Toast.makeText(mContext, "물건이 목록에 추가되었습니다.", Toast.LENGTH_SHORT).show();
-                        System.out.println(mGETDB.getPath(newTitle).toString());
+                        if (!isDuplicateObjectName(newPath)){
+                            Toast.makeText(mContext, "경로가 존재하지 않습니다.", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
 

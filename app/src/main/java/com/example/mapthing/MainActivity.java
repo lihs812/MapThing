@@ -72,31 +72,36 @@ public class MainActivity extends AppCompatActivity {
                         if (path.isEmpty()) {
                             path = "";
                         }
+                        //동일한 이름을 가진 개체가 없고, 경로를 이미 있는 객체들중에서 고르거나, 패스가 비어있을떄
+                        if (!isDuplicate && (isDuplicateObjectName(path) || path.isEmpty())) {
+                            String currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+                            mGETDB.insert(
+                                    itemName,
+                                    path,
+                                    tag_name.getText().toString(),
+                                    currentTime,
+                                    0,
+                                    ""
+                            );
 
-                        String currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-                        mGETDB.insert(
-                                itemName,
-                                path,
-                                tag_name.getText().toString(),
-                                currentTime,
-                                0,
-                                ""
-                        );
+                            Arritem item = new Arritem();
+                            item.setTitle(itemName);
+                            item.setTag(tag_name.getText().toString());
 
-                        Arritem item = new Arritem();
-                        item.setTitle(itemName);
-                        item.setTag(tag_name.getText().toString());
+                            mAdapter.addItem(item);
 
-                        mAdapter.addItem(item);
-
-                        mRv_mapthings.smoothScrollToPosition(0);
-                        dialog.dismiss();
-                        Toast.makeText(MainActivity.this, "물건이 목록에 추가되었습니다.", Toast.LENGTH_SHORT).show();
-                        System.out.println(mGETDB.getPath(itemName).toString());
+                            mRv_mapthings.smoothScrollToPosition(0);
+                            dialog.dismiss();
+                            Toast.makeText(MainActivity.this, "물건이 목록에 추가되었습니다.", Toast.LENGTH_SHORT).show();
+                            System.out.println(mGETDB.getPath(itemName).toString());
+                        }
 
                         // 이미 동일한 이름의 객체가 있는 경우 메시지 출력
                         if (isDuplicate) {
                             Toast.makeText(MainActivity.this, "동일한 이름의 객체가 이미 존재합니다.", Toast.LENGTH_SHORT).show();
+                        }
+                        else if (!isDuplicateObjectName(path)){
+                            Toast.makeText(MainActivity.this, "경로가 존재하지 않습니다.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
