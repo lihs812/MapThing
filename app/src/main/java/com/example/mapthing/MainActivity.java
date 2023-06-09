@@ -106,6 +106,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button list_button = findViewById(R.id.list_button);
+        list_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), path_view_list.class);
+                startActivity(intent);
+            }
+        });
+
         Button tag_button = findViewById(R.id.tag_button);
         tag_button.setOnClickListener(new View.OnClickListener() {
             @Override
