@@ -133,17 +133,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void showPathList() {
         Dialog dialog = new Dialog(mContext, android.R.style.Theme_Material_Light_Dialog);
-        dialog.setContentView(R.layout.path_view_main);
+        dialog.setContentView(R.layout.all_path_list);
 
-        ListView listView = dialog.findViewById(R.id.rv_list);
+        listView = dialog.findViewById(R.id.rv_list);
 
         // 경로 데이터 가져오기
         String itemName = "물건의_이름"; // 실제 물건의 이름으로 변경
         List<String> pathList = mGETDB.getPath(itemName);
-
-        // 어댑터 설정
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(mContext, android.R.layout.simple_list_item_1, pathList);
-        listView.setAdapter(adapter);
 
         dialog.show();
     }

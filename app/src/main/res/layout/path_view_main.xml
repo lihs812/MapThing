@@ -16,24 +16,8 @@
         app:layout_constraintStart_toStartOf="@+id/rv_list" />
 
     <!-- 리스트 버튼 -->
-    <Button
-        android:id="@+id/list_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="리스트"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/tag_button"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <!-- 알람 버튼 -->
-    <Button
-        android:id="@+id/alarm_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="알람"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tag_button" />
 
 
     <!-- 태그 검색 입력 필드 -->
@@ -45,17 +29,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <!-- 추가 버튼 -->
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="28dp"
-        android:layout_marginBottom="104dp"
-        android:clickable="true"
-        android:contentDescription="Add"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/baseline_add_circle_outline_24" />
 
     <!-- 리스트 RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView

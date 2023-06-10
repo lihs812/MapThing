@@ -3,11 +3,13 @@ package com.example.mapthing;
 import android.app.Dialog;
 import android.content.Context;
 import android.icu.text.SimpleDateFormat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -68,15 +70,24 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             public void onClick(View v) {
                 Dialog dialog = new Dialog(mContext, android.R.style.Theme_Material_Light_Dialog);
                 dialog.setContentView(R.layout.update_or_del_popup);
+                TextView pathView = dialog.findViewById(R.id.textView);
                 EditText plain_text1 = dialog.findViewById(R.id.plain_text1);
                 EditText tag_name = dialog.findViewById(R.id.tag_name);
                 EditText path_name = dialog.findViewById(R.id.path_name);
                 Button btn_update = dialog.findViewById(R.id.btn_update);
                 Button btn_delete = dialog.findViewById(R.id.btn_del);
 
+
                 plain_text1.setText(item.getTitle());
                 tag_name.setText(item.getTag());
                 path_name.setText(item.getPath());
+                String path_text = "";
+                for (String t : mGETDB.getPath(item.getPath())) {
+                        path_text += t + "\n";
+                    Log.d("TAG", t);
+                }
+                pathView.setText(path_text);
+
 
                 btn_update.setOnClickListener(new View.OnClickListener() {
                     @Override

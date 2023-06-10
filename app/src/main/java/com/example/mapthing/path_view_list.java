@@ -18,6 +18,7 @@ public class path_view_list extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.path_view_main);
 
+        /*
         // RecyclerView 초기화
         recyclerView = findViewById(R.id.rv_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -26,9 +27,6 @@ public class path_view_list extends AppCompatActivity {
         DBHelper dbHelper = new DBHelper(this, 2); // 버전 번호를 2로 변경
         String itemName = "물건의_이름";
         pathList = dbHelper.getPath(itemName);
-
-        // 어댑터 설정
-        adapter = new PathAdapter(pathList);
-        recyclerView.setAdapter(adapter);
+        */
     }
 }
